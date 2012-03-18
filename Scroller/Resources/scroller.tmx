@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="1000" height="20" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="play1_atlas0" tilewidth="64" tileheight="16" spacing="1" margin="1">
+  <image source="play1_atlas0.png"/>
+ </tileset>
+ <objectgroup name="Collision" width="1000" height="20">
+  <object name="" x="3" y="265" width="1098" height="50"/>
+  <object name="" x="2116" y="277" width="1063" height="38"/>
+  <object name="" x="3454" y="235" width="551" height="154"/>
+  <object name="" x="4496" y="258" width="752" height="86"/>
+  <object name="" x="6934" y="259" width="1123" height="62"/>
+  <object name="" x="8143" y="258" width="1736" height="57"/>
+  <object name="" x="9980" y="272" width="869" height="46"/>
+  <object name="" x="10852" y="276" width="860" height="46"/>
+  <object name="" x="11715" y="278" width="1094" height="40"/>
+  <object name="" x="13161" y="279" width="1040" height="37"/>
+  <object name="" x="15063" y="212" width="935" height="34"/>
+  <object name="powerup" x="1116" y="200" width="17" height="18"/>
+  <object name="powerup" x="5266" y="197" width="12" height="11"/>
+  <object name="powerup" x="5305" y="154" width="15" height="16"/>
+  <object name="powerup" x="14217" y="210" width="25" height="24"/>
+  <object name="powerup" x="9467" y="212" width="35" height="35"/>
+  <object name="powerup" x="9911" y="180" width="25" height="22"/>
+  <object name="powerupdj" x="402" y="217" width="16" height="16"/>
+  <object name="crow" x="2182" y="259" width="15" height="15"/>
+  <object name="crow" x="7013" y="242" width="15" height="17"/>
+ </objectgroup>
+ <layer name="Tile Layer 1" width="1000" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3au0rEQBQG4LydnV0ewXqxs7MTLAQFYQULQYhgbWfnm9kuw2wml4meJN8HIfxzOTtpdjm72zQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwJZdB6sDAAAAe3QTrA4AAADs0W2wOgAAALBHd8HqAAAAwB49BKsDAEB8jzKwoIsKuUaNMbmG52B1tuy/Pzdq5bl1nhoAYO2OMieuMvncdW5daf/Q+qXXHrpu7FrqulxBTsdqeA1WZ8u+kjz2fX/u/qm59jleGgBg7Q6ZfBg4n5uLlktrarpfeP4vDOm7p/TRU/bWvIY8E8uI0H+X8hL9+XuwOlv2neRuZJ6yvzsZ72Zcfeco1U69ZcYAAPZqC/+9n/NbdWnvmDpN4d7XW/f15H3PyjLaALk9M99mxmr5DFZny36SPLY/n7I/16On965nT65G7hx93wWkPjJjAMC6/AId36GugDgBAA==
+  </data>
+ </layer>
+</map>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="240" height="20" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="scroller-atlas" tilewidth="16" tileheight="16">
+  <image source="scroller-atlas.png"/>
+ </tileset>
+ <objectgroup name="Collision" width="240" height="20">
+  <object name="" x="0" y="210" width="538" height="107"/>
+  <object name="" x="623" y="144" width="381" height="173"/>
+  <object name="" x="1106" y="98" width="267" height="221"/>
+  <object name="" x="1425" y="179" width="395" height="137"/>
+  <object name="" x="1924" y="227" width="674" height="92"/>
+  <object name="" x="2703" y="159" width="594" height="161"/>
+  <object name="" x="3444" y="193" width="373" height="125"/>
+ </objectgroup>
+ <layer name="Tile Layer 1" width="240" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3T0Q2FMAxDUWZg/2ERC0RR29gJ3CO936faONcFAAAAAAAAAAAU7gM/AB7cLzAX9wvsO3FHKzfG/QL7uF+8qnfA963xlftlT3vct/q3vk/hftnTy32rq30r3uDuIerD9Q1O/3eXPU3l3uZq34o3uHuI+nB9g9P/7dyT+7t+NUOG4g3uHqI+Ju9FmaM6i3MDXTNkKN7g7iHqY/JelDmqszg30DVDhuIN7h6iPibvRZmjOotzA10zZCje4O4h6mPyXpQ5qrM4N9A1Q4biDe4eoj4m70WZozqLcwNdM2Qo3vAAzVYgPgBLAAA=
+  </data>
+ </layer>
+</map>

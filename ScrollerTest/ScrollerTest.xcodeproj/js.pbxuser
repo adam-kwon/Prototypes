@@ -1,0 +1,282 @@
+// !$*UTF8*$!
+{
+	1D6058900D05DD3D006BFB54 /* ScrollerTest */ = {
+		activeExec = 0;
+		executables = (
+			4BD3F59C12DA63B100D66D40 /* ScrollerTest */,
+		);
+	};
+	1F3B9A2B0EF2145700286867 /* ScrollerTestAppDelegate.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {712, 1898}}";
+			sepNavSelRange = "{2358, 0}";
+			sepNavVisRange = "{1775, 1157}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 4BD3F59C12DA63B100D66D40 /* ScrollerTest */;
+		activeSDKPreference = iphonesimulator4.0;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* ScrollerTest */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* ScrollerTest */,
+		);
+		codeSenseManager = 4BD3F5AE12DA63BA00D66D40 /* Code sense */;
+		executables = (
+			4BD3F59C12DA63B100D66D40 /* ScrollerTest */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					506,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 316409877;
+			PBXWorkspaceStateSaveDate = 316409877;
+		};
+		perUserProjectItems = {
+			4BD3F76112DC078200D66D40 = 4BD3F76112DC078200D66D40 /* PBXTextBookmark */;
+			4BD3F76212DC078200D66D40 = 4BD3F76212DC078200D66D40 /* PBXTextBookmark */;
+			4BD3F76312DC078200D66D40 = 4BD3F76312DC078200D66D40 /* PBXTextBookmark */;
+			4BD3F76412DC078200D66D40 = 4BD3F76412DC078200D66D40 /* PBXTextBookmark */;
+			4BD3F76512DC078200D66D40 = 4BD3F76512DC078200D66D40 /* PBXBookmark */;
+			4BD3F76612DC078200D66D40 = 4BD3F76612DC078200D66D40 /* PlistBookmark */;
+			4BD3F76712DC078200D66D40 = 4BD3F76712DC078200D66D40 /* PBXTextBookmark */;
+			4BD3F76812DC078200D66D40 = 4BD3F76812DC078200D66D40 /* PBXTextBookmark */;
+			4BD3F76912DC078200D66D40 = 4BD3F76912DC078200D66D40 /* PBXTextBookmark */;
+			4BD3F79712DD44BD00D66D40 /* PlistBookmark */ = 4BD3F79712DD44BD00D66D40 /* PlistBookmark */;
+			4BD3F79812DD44BD00D66D40 /* PBXTextBookmark */ = 4BD3F79812DD44BD00D66D40 /* PBXTextBookmark */;
+			4BD3F79912DD44BD00D66D40 /* PBXTextBookmark */ = 4BD3F79912DD44BD00D66D40 /* PBXTextBookmark */;
+			4BD3F79A12DD44BD00D66D40 /* PBXTextBookmark */ = 4BD3F79A12DD44BD00D66D40 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 4BD3F5AD12DA63BA00D66D40 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	4BD3F59C12DA63B100D66D40 /* ScrollerTest */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = ScrollerTest;
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	4BD3F5AD12DA63BA00D66D40 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	4BD3F5AE12DA63BA00D66D40 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	4BD3F5B412DA643900D66D40 /* GameScene.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {684, 484}}";
+			sepNavSelRange = "{342, 0}";
+			sepNavVisRange = "{0, 365}";
+		};
+	};
+	4BD3F5B512DA643900D66D40 /* GameScene.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {761, 1430}}";
+			sepNavSelRange = "{1347, 0}";
+			sepNavVisRange = "{910, 1387}";
+		};
+	};
+	4BD3F67912DA765800D66D40 /* Player.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {684, 461}}";
+			sepNavSelRange = "{213, 0}";
+			sepNavVisRange = "{0, 369}";
+		};
+	};
+	4BD3F67A12DA765800D66D40 /* Player.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {908, 1105}}";
+			sepNavSelRange = "{2008, 0}";
+			sepNavVisRange = "{1298, 1060}";
+		};
+	};
+	4BD3F76112DC078200D66D40 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1F3B9A2B0EF2145700286867 /* ScrollerTestAppDelegate.m */;
+		name = "ScrollerTestAppDelegate.m: 79";
+		rLen = 0;
+		rLoc = 2358;
+		rType = 0;
+		vrLen = 1157;
+		vrLoc = 1775;
+	};
+	4BD3F76212DC078200D66D40 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4BD3F67912DA765800D66D40 /* Player.h */;
+		name = "Player.h: 12";
+		rLen = 0;
+		rLoc = 213;
+		rType = 0;
+		vrLen = 369;
+		vrLoc = 0;
+	};
+	4BD3F76312DC078200D66D40 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4BD3F5B412DA643900D66D40 /* GameScene.h */;
+		name = "GameScene.h: 20";
+		rLen = 0;
+		rLoc = 342;
+		rType = 0;
+		vrLen = 365;
+		vrLoc = 0;
+	};
+	4BD3F76412DC078200D66D40 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E02BB7DD126CC224006E46A2 /* cocos2d.h */;
+		name = "cocos2d.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1531;
+		vrLoc = 0;
+	};
+	4BD3F76512DC078200D66D40 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 4BD3F71012DABF0500D66D40 /* shadow-walk.png */;
+	};
+	4BD3F76612DC078200D66D40 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 4BD3F70F12DABF0500D66D40 /* shadow-walk.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/js/Documents/ScrollerTest/Resources/shadow-walk.plist";
+		rLen = 0;
+		rLoc = 9223372036854775808;
+	};
+	4BD3F76712DC078200D66D40 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4BD3F5B512DA643900D66D40 /* GameScene.m */;
+		name = "GameScene.m: 48";
+		rLen = 69;
+		rLoc = 1490;
+		rType = 0;
+		vrLen = 1423;
+		vrLoc = 819;
+	};
+	4BD3F76812DC078200D66D40 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4BD3F67A12DA765800D66D40 /* Player.m */;
+		name = "Player.m: 57";
+		rLen = 0;
+		rLoc = 1456;
+		rType = 0;
+		vrLen = 1491;
+		vrLoc = 434;
+	};
+	4BD3F76912DC078200D66D40 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4BD3F67A12DA765800D66D40 /* Player.m */;
+		name = "Player.m: 51";
+		rLen = 0;
+		rLoc = 1426;
+		rType = 0;
+		vrLen = 1341;
+		vrLoc = 223;
+	};
+	4BD3F79712DD44BD00D66D40 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 4BD3F70F12DABF0500D66D40 /* shadow-walk.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			frames,
+			"shadow-run1.png",
+		);
+		name = "/Users/js/Documents/ScrollerTest/Resources/shadow-walk.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	4BD3F79812DD44BD00D66D40 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4BD3F5B512DA643900D66D40 /* GameScene.m */;
+		name = "GameScene.m: 46";
+		rLen = 0;
+		rLoc = 1347;
+		rType = 0;
+		vrLen = 1387;
+		vrLoc = 910;
+	};
+	4BD3F79912DD44BD00D66D40 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4BD3F67A12DA765800D66D40 /* Player.m */;
+		name = "Player.m: 51";
+		rLen = 0;
+		rLoc = 1426;
+		rType = 0;
+		vrLen = 1273;
+		vrLoc = 291;
+	};
+	4BD3F79A12DD44BD00D66D40 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 4BD3F67A12DA765800D66D40 /* Player.m */;
+		name = "Player.m: 72";
+		rLen = 0;
+		rLoc = 2008;
+		rType = 0;
+		vrLen = 1060;
+		vrLoc = 1298;
+	};
+	506EE05D10304ED200A389B3 /* cocos2d libraries */ = {
+		activeExec = 0;
+	};
+	E02BB7DD126CC224006E46A2 /* cocos2d.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {719, 1937}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1531}";
+			sepNavWindowFrame = "{{38, 323}, {755, 829}}";
+		};
+	};
+}

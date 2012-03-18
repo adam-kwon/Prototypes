@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="240" height="20" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="scroller-atlas" tilewidth="16" tileheight="16">
+  <image source="scroller-atlas.png"/>
+ </tileset>
+ <objectgroup name="Collision" width="240" height="20">
+  <object name="" x="469" y="239" width="619" height="81"/>
+  <object name="" x="1203" y="209" width="682" height="108"/>
+  <object name="" x="31" y="193" width="298" height="123"/>
+  <object name="" x="1972" y="259" width="781" height="59"/>
+  <object name="" x="2832" y="259" width="989" height="59"/>
+  <object name="" x="413" y="416"/>
+ </objectgroup>
+ <layer name="Tile Layer 1" width="240" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3TwQ2AMAwDQOZh/wGZoGqF6kaBO4m/bZrrAgAAAAAAAAAAAADo5d74AWe537mdG6U//sXbmau+Sf+AkZNvp/ptv81enc39MuJ+v3+/1Zn0ym2R3rjL3l1zr/SozqRXbov0xl327pp7pUd1Jr1yW6Q37rJ319wrPaoz6bV/iwdZIz6CAEsAAA==
+  </data>
+ </layer>
+</map>
