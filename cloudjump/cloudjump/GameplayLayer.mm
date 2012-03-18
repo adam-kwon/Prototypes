@@ -11,6 +11,7 @@
 #import "GameplayLayer.h"
 #import "Constants.h"
 #import "Player.h"
+#import "Energy.h"
 
 
 // enums that will be used as tags
@@ -95,9 +96,9 @@ enum {
         [self addChild:player];
 
         for (int i = 0; i < 100; i++) {
-            CCSprite *box = [CCSprite spriteWithFile:@"blocks.png"];
-            box.position = ccp(10, 0 + 100*i);
-            [self addChild:box z:-1];
+            Energy *energy = [Energy spriteWithFile:@"food.png"];
+            energy.position = ccp(arc4random() % 320,  100*i);
+            [self addChild:energy z:-1];
         }
         
 		//CCSpriteBatchNode *batch = [CCSpriteBatchNode batchNodeWithFile:@"blocks.png" capacity:150];

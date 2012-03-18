@@ -18,7 +18,8 @@
 // Define game object types here
 typedef enum {
 	kGameObjectNone,                            // 0
-    kGameObjectPlayer
+    kGameObjectPlayer,
+    kGameObjectEnergy
 } GameObjectType;
 
 typedef enum {
