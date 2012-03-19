@@ -9,10 +9,18 @@
 #import "PhysicsObject.h"
 #import "SpriteObject.h"
 
+typedef enum {
+    kPlayerStateNone,
+    kPlayerStateGotEnergy
+} PlayerState;
+
 @interface Player : SpriteObject {
     CGSize screenSize;
+    PlayerState state;
 }
 
 - (void) jump;
 - (void) updateObject:(ccTime)dt withAccelX:(float)accelX;
+
+@property (nonatomic, readwrite, assign) PlayerState state;
 @end

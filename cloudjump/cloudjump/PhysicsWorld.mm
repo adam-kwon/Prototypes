@@ -79,7 +79,7 @@ static PhysicsWorld* instanceOfWorld;
 #endif
 
 - (void) setupPhysicsWorld {
-    b2Vec2 gravity = b2Vec2(0.0f, -50.f);
+    b2Vec2 gravity = b2Vec2(0.0f, -30.f);
     bool doSleep = true;
     world = new b2World(gravity, doSleep);    
 

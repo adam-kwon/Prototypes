@@ -13,6 +13,8 @@
 		394F02AA150B02960007B06C /* Player.mm in Sources */ = {isa = PBXBuildFile; fileRef = 394F02A9150B02960007B06C /* Player.mm */; };
 		3953F0041516A88600295797 /* food.png in Resources */ = {isa = PBXBuildFile; fileRef = 3953F0031516A88600295797 /* food.png */; };
 		3953F00C1516AB9200295797 /* Energy.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3953F00B1516AB9200295797 /* Energy.mm */; };
+		3953F0131516BC4B00295797 /* energy.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3953F0121516BC4B00295797 /* energy.caf */; };
+		3953F0171516BC7D00295797 /* AudioEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3953F0161516BC7D00295797 /* AudioEngine.m */; };
 		39DEA143150AF9C000F06F9A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39DEA142150AF9C000F06F9A /* QuartzCore.framework */; };
 		39DEA145150AF9C000F06F9A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39DEA144150AF9C000F06F9A /* OpenGLES.framework */; };
 		39DEA147150AF9C000F06F9A /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39DEA146150AF9C000F06F9A /* OpenAL.framework */; };
@@ -182,6 +184,9 @@
 		3953F0031516A88600295797 /* food.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = food.png; sourceTree = "<group>"; };
 		3953F00A1516AB9200295797 /* Energy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Energy.h; sourceTree = "<group>"; };
 		3953F00B1516AB9200295797 /* Energy.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Energy.mm; sourceTree = "<group>"; };
+		3953F0121516BC4B00295797 /* energy.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = energy.caf; sourceTree = "<group>"; };
+		3953F0151516BC7D00295797 /* AudioEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioEngine.h; sourceTree = "<group>"; };
+		3953F0161516BC7D00295797 /* AudioEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioEngine.m; sourceTree = "<group>"; };
 		39DEA13E150AF9C000F06F9A /* cloudjump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cloudjump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39DEA142150AF9C000F06F9A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		39DEA144150AF9C000F06F9A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -540,6 +545,15 @@
 			name = GameObjects;
 			sourceTree = "<group>";
 		};
+		3953F0141516BC6700295797 /* Audio Engine */ = {
+			isa = PBXGroup;
+			children = (
+				3953F0151516BC7D00295797 /* AudioEngine.h */,
+				3953F0161516BC7D00295797 /* AudioEngine.m */,
+			);
+			name = "Audio Engine";
+			sourceTree = "<group>";
+		};
 		39DEA133150AF9C000F06F9A = {
 			isa = PBXGroup;
 			children = (
@@ -575,6 +589,7 @@
 		39DEA152150AF9C000F06F9A /* cloudjump */ = {
 			isa = PBXGroup;
 			children = (
+				3953F0141516BC6700295797 /* Audio Engine */,
 				394F02A3150AFE070007B06C /* GameObjects */,
 				394F0299150AFD7E0007B06C /* Physics */,
 				39DEA317150AF9C500F06F9A /* AppDelegate.h */,
@@ -597,6 +612,7 @@
 		39DEA153150AF9C000F06F9A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3953F0121516BC4B00295797 /* energy.caf */,
 				3953F0031516A88600295797 /* food.png */,
 				39DEA154150AF9C000F06F9A /* Default.png */,
 				39DEA156150AF9C000F06F9A /* fps_images.png */,
@@ -1115,6 +1131,7 @@
 				39DEA166150AF9C000F06F9A /* iTunesArtwork in Resources */,
 				39DEA325150AF9C500F06F9A /* blocks.png in Resources */,
 				3953F0041516A88600295797 /* food.png in Resources */,
+				3953F0131516BC4B00295797 /* energy.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1264,6 +1281,7 @@
 				394F02A7150B02050007B06C /* SpriteObject.mm in Sources */,
 				394F02AA150B02960007B06C /* Player.mm in Sources */,
 				3953F00C1516AB9200295797 /* Energy.mm in Sources */,
+				3953F0171516BC7D00295797 /* AudioEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -91,13 +91,14 @@ enum {
         
         player = [Player spriteWithFile:@"blocks.png"];
         player.position = ccp(160, 20);
-        player.scale = 0.5;
+        player.scale = 0.75;
         [player createPhysicsObject:world];
         [self addChild:player];
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 200; i++) {
             Energy *energy = [Energy spriteWithFile:@"food.png"];
-            energy.position = ccp(arc4random() % 320,  100*i);
+            energy.position = ccp(arc4random() % 320,  80*i);
+            [energy createPhysicsObject:world];
             [self addChild:energy z:-1];
         }
         

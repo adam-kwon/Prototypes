@@ -30,7 +30,7 @@
 	body = theWorld->CreateBody(&playerBodyDef);
 	
 	b2CircleShape circleShape;
-	circleShape.m_radius = 0.5;
+	circleShape.m_radius = ([self boundingBox].size.width/PTM_RATIO)/2;
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &circleShape;
 	fixtureDef.density = 5000.0f;

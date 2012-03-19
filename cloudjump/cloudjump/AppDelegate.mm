@@ -12,6 +12,7 @@
 #import "GameConfig.h"
 #import "GameplayLayer.h"
 #import "RootViewController.h"
+#import "AudioEngine.h"
 
 @implementation AppDelegate
 
@@ -112,6 +113,8 @@
 	// Removes the startup flicker
 	[self removeStartupFlicker];
 	
+    [[AudioEngine sharedEngine] preloadEffect:@"energy.caf"];
+    
 	// Run the intro Scene
 	[[CCDirector sharedDirector] runWithScene: [GameplayLayer scene]];
 }
