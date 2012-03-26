@@ -24,4 +24,11 @@
 
 #define MOTOR_SPEED 3
 
+
+typedef enum {
+    kGameObjectNone,
+    kGameObjectCatcher,
+    kGameObjectJumper
+} GameObjectType;
+
 #endif

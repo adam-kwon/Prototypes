@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A70637CB151F7CFC00BBBE1C /* JumpingDude.mm in Sources */ = {isa = PBXBuildFile; fileRef = A70637CA151F7CFC00BBBE1C /* JumpingDude.mm */; };
 		A712D9BC1516B38D000A1C59 /* ContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = A712D9BB1516B38D000A1C59 /* ContactListener.mm */; };
 		A7601EB21516A7DB001BC937 /* catcher.png in Resources */ = {isa = PBXBuildFile; fileRef = A7601EB01516A7DB001BC937 /* catcher.png */; };
 		A7601EB31516A7DB001BC937 /* jumper.png in Resources */ = {isa = PBXBuildFile; fileRef = A7601EB11516A7DB001BC937 /* jumper.png */; };
@@ -168,10 +169,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A70637C9151F7CFC00BBBE1C /* JumpingDude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JumpingDude.h; sourceTree = "<group>"; };
+		A70637CA151F7CFC00BBBE1C /* JumpingDude.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JumpingDude.mm; sourceTree = "<group>"; };
 		A712D9BA1516B38D000A1C59 /* ContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListener.h; sourceTree = "<group>"; };
 		A712D9BB1516B38D000A1C59 /* ContactListener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContactListener.mm; sourceTree = "<group>"; };
 		A7601EB01516A7DB001BC937 /* catcher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = catcher.png; path = Resources/catcher.png; sourceTree = "<group>"; };
 		A7601EB11516A7DB001BC937 /* jumper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = jumper.png; path = Resources/jumper.png; sourceTree = "<group>"; };
+		A7A80A6D15180F0100B77D93 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		A7FE1CE7150D6D490061215C /* SwingProto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwingProto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FE1CEB150D6D490061215C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A7FE1CED150D6D490061215C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -548,6 +552,7 @@
 				A7FE1EE515142CB90061215C /* Constants.h */,
 				A712D9BA1516B38D000A1C59 /* ContactListener.h */,
 				A712D9BB1516B38D000A1C59 /* ContactListener.mm */,
+				A7A80A6D15180F0100B77D93 /* GameObject.h */,
 				A7FE1EC3150D6D4A0061215C /* AppDelegate.h */,
 				A7FE1EC4150D6D4A0061215C /* AppDelegate.mm */,
 				A7FE1EC6150D6D4B0061215C /* RootViewController.h */,
@@ -557,6 +562,8 @@
 				A7FE1ECC150D6D4B0061215C /* GLES-Render.h */,
 				A7FE1ECD150D6D4B0061215C /* GLES-Render.mm */,
 				A7FE1ECF150D6D4B0061215C /* GameConfig.h */,
+				A70637C9151F7CFC00BBBE1C /* JumpingDude.h */,
+				A70637CA151F7CFC00BBBE1C /* JumpingDude.mm */,
 				A7FE1EE21514295E0061215C /* SwingingRopeDude.h */,
 				A7FE1EE31514295E0061215C /* SwingingRopeDude.mm */,
 				A7FE1CFC150D6D490061215C /* Resources */,
@@ -1239,6 +1246,7 @@
 				A7FE1ECE150D6D4B0061215C /* GLES-Render.mm in Sources */,
 				A7FE1EE41514295E0061215C /* SwingingRopeDude.mm in Sources */,
 				A712D9BC1516B38D000A1C59 /* ContactListener.mm in Sources */,
+				A70637CB151F7CFC00BBBE1C /* JumpingDude.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

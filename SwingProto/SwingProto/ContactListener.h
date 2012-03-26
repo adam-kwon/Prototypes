@@ -8,6 +8,7 @@
 
 #import "Box2D.h"
 #import "cocos2d.h"
+#import "GameObject.h"
 
 class ContactListener : public b2ContactListener {
     
@@ -16,6 +17,7 @@ public:
 	ContactListener();
 	~ContactListener();
     
+    void handleCatcherJumperCollision(CCNode<GameObject> *o1, CCNode<GameObject> *o2);
     
 	virtual void BeginContact(b2Contact *contact);
 	virtual void EndContact(b2Contact *contact);

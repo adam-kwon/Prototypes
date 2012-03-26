@@ -16,6 +16,8 @@
 
 
 
+@class SwingingRopeDude;
+@class JumpingDude;
 
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
@@ -24,10 +26,12 @@
     ContactListener *contactListener;
 	GLESDebugDraw *m_debugDraw;
     
-    b2Body *holderBody;
-    b2Body *catcherBody;
+//    b2Body *holderBody;
+//    b2Body *catcherBody;
+    
     b2Body *jumperBody;
     
+    JumpingDude *jumper;
     b2Joint *jumperJoint;
     
     b2RevoluteJoint *revJoint;
@@ -35,13 +39,34 @@
     
     float minAngleRads;
     float maxAngleRads;
+    float baseSpeed;
+    float baseXDelta;
+    float catcherXPos;
+    float catcherYPos;
+        
+    SwingingRopeDude *nextCatcher;
+    SwingingRopeDude *lastCatcher;
     
-    CCArray *ropes;
+    float leadoutOffset;
+    float lastJumperPos;
+    
+    BOOL finishScrolling;
+    float leadOut;
+    float scrollDelta;
+    
+    float targetScrollPos;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
 // adds a new sprite at a given coordinate
 -(void) addNewSpriteWithCoords:(CGPoint)p;
+
+
++ (HelloWorldLayer*) sharedLayer;
+- (SwingingRopeDude *) createNextCatcher;
+- (void) catchJumper:(SwingingRopeDude *)catcher;
+- (void) createJumperJoint;
+
 
 @end

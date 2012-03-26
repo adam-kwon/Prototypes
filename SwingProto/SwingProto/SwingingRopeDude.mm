@@ -13,17 +13,26 @@
 
 @implementation SwingingRopeDude
 
+@synthesize catcherBody;
+@synthesize catcherSprite;
+@synthesize anchorPos;
 
-- (id) initWithParent:(CCNode *)parent {
+- (id) initWithParent:(CCNode *)theParent at:(CGPoint)pos withSpeed:(float)speed{
 	if ((self = [super init])) {
-        minAngleRads = -45*(M_PI/180.0);
-        maxAngleRads = 45*(M_PI/180.0);
+        parent = theParent;
+        anchorPos = pos;
+        motorSpeed = speed;
+        
+        // set the angles
+        //XXX should make these and the speed configurable, maybe properties?
+        minAngleRads = -60*(M_PI/180.0);
+        maxAngleRads = 60*(M_PI/180.0);
     }
     
     return self;
 }
 
-- (void) createPhysicsObjectAsBox:(b2World*)theWorld {
+- (void) createPhysicsObject:(b2World*)theWorld {
     world = theWorld;
     
     
@@ -31,6 +40,7 @@
     // Create the invisible anchor
     //
     b2BodyDef anchorBodyDef;
+    anchorBodyDef.position.Set(anchorPos.x/PTM_RATIO, anchorPos.y/PTM_RATIO);
     anchor = world->CreateBody(&anchorBodyDef);
     
     b2PolygonShape anchorBox;
@@ -45,13 +55,15 @@
     //
     // Create the swinging rope
     //
-    CCSprite *ropeSprite = [CCSprite spriteWithFile:@"rope.png"];
-    [self addChild:ropeSprite];
+    ropeSprite = [CCSprite spriteWithFile:@"rope.png"];
+    ropeSprite.position = anchorPos;
+    [parent addChild:ropeSprite];
     
     b2BodyDef ropeBodyDef;
     ropeBodyDef.type = b2_dynamicBody;
-    ropeBodyDef.userData = ropeSprite;
-    rope = world->CreateBody(&ropeBodyDef);
+    ropeBodyDef.userData = NULL;
+    ropeBodyDef.position.Set(anchorPos.x/PTM_RATIO, anchorPos.y/PTM_RATIO);
+    ropeBody = world->CreateBody(&ropeBodyDef);
     
     // Create the rope's body
     b2PolygonShape ropeBox;
@@ -60,20 +72,21 @@
     // Create the rope fixture
     b2FixtureDef ropeFixtureDef;
     ropeFixtureDef.shape = &ropeBox;
-    ropeFixtureDef.density = 0.5f;
+    ropeFixtureDef.density = 1.5f;
     ropeFixtureDef.friction = 0.3f;
-    b2Fixture *ropeFixture = rope->CreateFixture(&ropeFixtureDef);
-    b2Filter ropeFilter = ropeFixture->GetFilterData();
+    b2Fixture *ropeFixture = ropeBody->CreateFixture(&ropeFixtureDef);
+    b2Filter ropeFilter;
     ropeFilter.categoryBits = CATEGORY_ROPE;
     ropeFilter.maskBits = 0;
+    ropeFixture->SetFilterData(ropeFilter);
     
     // create a revolute joint with a motor to oscillate between two points
     b2RevoluteJointDef revJointDef;
-    revJointDef.Initialize(anchor, rope, anchor->GetWorldCenter());
+    revJointDef.Initialize(anchor, ropeBody, anchor->GetWorldCenter());
     
     // set the anchor for the rope to be the top edge
     revJointDef.localAnchorB = b2Vec2(0, ([ropeSprite boundingBox].size.height/PTM_RATIO/2.1));
-    revJointDef.motorSpeed = MOTOR_SPEED;
+    revJointDef.motorSpeed = motorSpeed;
     revJointDef.lowerAngle = minAngleRads;
     revJointDef.upperAngle = maxAngleRads;
     revJointDef.enableLimit = YES;
@@ -81,21 +94,75 @@
     revJointDef.referenceAngle = 0;
     revJointDef.enableMotor = YES;
     revJoint = (b2RevoluteJoint *)world->CreateJoint(&revJointDef);
+    
+    
+    // create the catcher (swinging dude)
+    CGPoint catcherPos = ccp(anchorPos.x, anchorPos.y - [ropeSprite boundingBox].size.height/2.1);
+    catcherSprite = [CCSprite spriteWithFile:@"catcher.png"];
+    catchOffset = [catcherSprite boundingBox].size.height/PTM_RATIO*.75;
+
+    catcherSprite.position = catcherPos;
+    [parent addChild:catcherSprite];
+    
+    b2BodyDef catcherBodyDef;
+    catcherBodyDef.type = b2_dynamicBody;
+    catcherBodyDef.userData = self;
+    catcherBodyDef.position.Set(catcherPos.x/PTM_RATIO, catcherPos.y/PTM_RATIO);
+    catcherBody = world->CreateBody(&catcherBodyDef);
+    
+    b2PolygonShape catcherBox;
+    catcherBox.SetAsBox([catcherSprite boundingBox].size.width/PTM_RATIO/2, [catcherSprite boundingBox].size.height/PTM_RATIO/2);
+    
+    b2FixtureDef catcherFixtureDef;
+    catcherFixtureDef.shape = &catcherBox;
+    catcherFixtureDef.density = 1.0f;
+    catcherFixtureDef.friction = 0.3f;
+    catcherFixtureDef.isSensor = YES;
+    
+    b2Fixture *catcherFixture = catcherBody->CreateFixture(&catcherFixtureDef);
+    b2Filter catcherFilter;
+    catcherFilter.categoryBits = CATEGORY_CATCHER;
+    catcherFilter.maskBits = CATEGORY_JUMPER;
+    catcherFixture->SetFilterData(catcherFilter);
+    
+    b2WeldJointDef catcherJointDef;
+    catcherJointDef.Initialize(ropeBody, catcherBody, catcherBody->GetWorldCenter());
+    
+    catcherJointDef.collideConnected = NO;
+    catcherJointDef.bodyA = ropeBody;
+    catcherJointDef.bodyB = catcherBody;
+    catcherJointDef.localAnchorA = b2Vec2(0, 0);
+    catcherJointDef.localAnchorB = b2Vec2(0,[catcherSprite boundingBox].size.height/PTM_RATIO/2*.8);
+    world->CreateJoint(&catcherJointDef);
 }
 
 // make the motor oscillate by switching directions when the limits are reached
 - (void) updateObject:(ccTime)dt {
+    
+    // update the sprite positions
+    catcherSprite.position = CGPointMake( catcherBody->GetPosition().x * PTM_RATIO, catcherBody->GetPosition().y * PTM_RATIO);
+    catcherSprite.rotation = -1 * CC_RADIANS_TO_DEGREES(catcherBody->GetAngle());
+    
+    ropeSprite.position = CGPointMake( ropeBody->GetPosition().x * PTM_RATIO, ropeBody->GetPosition().y * PTM_RATIO);
+    ropeSprite.rotation = -1 * CC_RADIANS_TO_DEGREES(ropeBody->GetAngle());
+  
     if (revJoint->GetJointAngle() >= maxAngleRads) {
-        revJoint->SetMotorSpeed(-MOTOR_SPEED);
+        revJoint->SetMotorSpeed(-motorSpeed);
     } else if (revJoint->GetJointAngle() <= minAngleRads) {
-        revJoint->SetMotorSpeed(MOTOR_SPEED);
+        revJoint->SetMotorSpeed(motorSpeed);
     }
 }
 
 -(void) moveTo:(CGPoint)pos {
-    self.position = pos;
+//    self.position = pos;
+    
 
     anchor->SetTransform(b2Vec2(pos.x/PTM_RATIO, pos.y/PTM_RATIO), 0);    
+    
+    ropeBody->SetTransform(b2Vec2(pos.x/PTM_RATIO, pos.y/PTM_RATIO), 0);
+
+    //XXX necessary?  Will the weld joint automatically move him with the rope?
+    catcherBody->SetTransform(b2Vec2(pos.x/PTM_RATIO, pos.y/PTM_RATIO), 0);
     
 }
 
@@ -106,6 +173,10 @@
     
     // make it active and visible
     [self setVisible:YES];
+}
+
+- (GameObjectType) gameObjectType {
+    return kGameObjectCatcher;
 }
 
 
