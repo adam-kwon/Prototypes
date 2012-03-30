@@ -22,6 +22,12 @@ enum {
 	kTagAnimation1 = 1,
 };
 
+#define MIN_SCROLL_DELTA 3
+
+@interface HelloWorldLayer(Private)
+- (void) initGame;
+- (void) cleanupGame;
+@end
 
 // HelloWorldLayer implementation
 @implementation HelloWorldLayer
@@ -96,12 +102,11 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
 //		flags += b2DebugDraw::e_aabbBit;
 //		flags += b2DebugDraw::e_pairBit;
 //		flags += b2DebugDraw::e_centerOfMassBit;
-		m_debugDraw->SetFlags(flags);		
+		m_debugDraw->SetFlags(flags);
         
-        baseSpeed = 2;
+    
+		
         
-//		
-//        
 //        SwingingRopeDude *rope1 = [[SwingingRopeDude alloc] init];
 //        [rope1 createPhysicsObjectAsBox:world];
 //        [ropes addObject:rope1];
@@ -314,14 +319,7 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
 //        catcherJointDef2.localAnchorB = b2Vec2(0,[catcher2 boundingBox].size.height/PTM_RATIO/2*.8);
 //        world->CreateJoint(&catcherJointDef2);
         
-        baseXDelta = screenSize.width*.4;
-        catcherXPos = -(screenSize.width*.2);
-        catcherYPos = screenSize.height*.75;
-        
-        SwingingRopeDude *firstCatcher = [self createNextCatcher];
-        for (int i=0; i < 10; i++) {
-            [self createNextCatcher];
-        }
+
         
         
 //        CGPoint pos1 = ccp(screenSize.width*.25, screenSize.height*.75);
@@ -332,14 +330,6 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
 //        [rope2 createPhysicsObject:world];
         
         
-        // create the jumper
-        CCSprite *catcher = firstCatcher.catcherSprite;
-        finishScrolling = NO;
-        leadOut = screenSize.width*.6;
-
-        CGPoint jumperPos = ccp(catcher.position.x, catcher.position.y - [catcher boundingBox].size.height*.7);
-        jumper = [[JumpingDude alloc] initWithParent:self];
-        [jumper createPhysicsObject:world at:jumperPos];
 
 //        CCSprite *jumper = [CCSprite spriteWithFile:@"jumper.png"];
 //        jumper.position = jumperPos;
@@ -367,10 +357,7 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
         
         
         // attach the jumper to the first rope
-        nextCatcher = firstCatcher;
-        jumperJoint = NULL;
-        [self createJumperJoint];
-        nextCatcher = nil;
+
         
 //        b2WeldJointDef jumperJointDef;
 //        b2Vec2 jjPos = catcherBody->GetWorldCenter();
@@ -379,11 +366,45 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
 //        jumperJoint = world->CreateJoint(&jumperJointDef);
                 
         
-		[self schedule: @selector(tick:)];
+        [self initGame];
 	}
 	return self;
 }
 
+- (void) initGame {
+    
+    CGSize screenSize = [CCDirector sharedDirector].winSize;
+
+    baseSpeed = 3;
+    baseXDelta = screenSize.width*.4;
+    catcherXPos = -(screenSize.width*.2);
+    catcherYPos = screenSize.height*.75;
+    
+    SwingingRopeDude *firstCatcher = [self createNextCatcher];
+    for (int i=0; i < 10; i++) {
+        [self createNextCatcher];
+    }
+    
+    // create the jumper
+    CCSprite *catcher = firstCatcher.catcherSprite;
+    finishScrolling = NO;
+    leadOut = screenSize.width*.6;
+    
+    CGPoint jumperPos = ccp(catcher.position.x, catcher.position.y - [catcher boundingBox].size.height*.7);
+    jumper = [[JumpingDude alloc] initWithParent:self];
+    [jumper createPhysicsObject:world at:jumperPos];
+
+    nextCatcher = firstCatcher;
+    jumperJoint = NULL;
+    [self createJumperJoint];
+    nextCatcher = nil;
+    
+    [self schedule: @selector(tick:)];
+}
+
+- (void) cleanupGame {
+    
+}
    
 - (SwingingRopeDude *) createNextCatcher {
     catcherXPos += (baseXDelta*(1 + (CCRANDOM_0_1()/5)));
@@ -407,7 +428,10 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
     
     //XXX don't think it's possible to get here if it's non null
     if (jumperJoint == NULL) {
-        targetScrollPos = -(nextCatcher.catcherSprite.position.x - leadOut);
+        targetScrollPos = -(lastCatcher.catcherSprite.position.x);
+//        + leadOut);
+        
+        CCLOG(@"  curr pos=%f, nextCatcher pos=%f, leadout=%f, target pos=%f\n", self.position.x, nextCatcher.catcherSprite.position.x, leadOut, targetScrollPos);
         lastCatcher = nextCatcher;
         lastJumperPos = jumper.sprite.position.x;
 //        scrollVel = jumper.body->GetLinearVelocity().x;
@@ -500,6 +524,13 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
 
 -(void) tick: (ccTime) dt
 {
+    // if the jumper fell below the screen, stop now
+    if (jumper.sprite.position.y < -200) {
+        [self unscheduleAllSelectors];
+        [self cleanupGame];
+        return;
+    }
+    
 	//It is recommended that a fixed time step is used with Box2D for stability
 	//of the simulation, however, we are using a variable time step here.
 	//You need to make an informed choice, the following URL is useful
@@ -532,13 +563,6 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
 		}	
 	}
 
-    
-//    SwingingRopeDude *rope;
-//    CCARRAY_FOREACH(ropes, rope) {
-//        [rope updateObject:dt];
-//    }
-    
-
     // If the jumper should be caught, create the joint now
     if (nextCatcher != nil) {
         [self createJumperJoint];
@@ -548,15 +572,18 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
     if (jumperJoint == NULL) {
         float newX = -(jumper.sprite.position.x - leadoutOffset);
         scrollDelta = self.position.x - newX;
+        if (scrollDelta < MIN_SCROLL_DELTA)
+            scrollDelta = MIN_SCROLL_DELTA;
+        
         CCLOG(@"  SCROLLING: curr self=%f, player=%f, leadout=%f, new=%f\n", self.position.x, jumper.sprite.position.x, leadoutOffset, -(jumper.sprite.position.x - leadoutOffset));
 
         self.position = ccp(newX, self.position.y);
     } else if (finishScrolling) {
-        CCLOG(@"finish scrolling: pos=%f, target=%f, delta=%f, new=%f\n", self.position.x, targetScrollPos, scrollDelta, (self.position.x + scrollDelta));
+        CCLOG(@"finish scrolling: pos=%f, target=%f, delta=%f, new=%f\n", self.position.x, targetScrollPos, scrollDelta, (self.position.x - scrollDelta));
         if ((scrollDelta > 0 && self.position.x > targetScrollPos) ||
             (scrollDelta < 0 && self.position.x < targetScrollPos)) {
 
-//            self.position = ccp(self.position.x - scrollDelta, self.position.y);            
+            self.position = ccp(self.position.x - scrollDelta, self.position.y);            
         } else {
             finishScrolling = NO;
         }
@@ -568,33 +595,17 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
     
     if (jumperJoint != NULL) {
         
-        // only set this for the first jump
-        if (leadoutOffset == 0) {
-            leadoutOffset = jumper.sprite.position.x - self.position.x;
-        } else {
-            // account for the difference between where the offset was when the jumper
-            // was caught, and where the jumper is now (will be different due to the
-            // swinging rope)
-            leadoutOffset += (jumper.sprite.position.x - lastJumperPos);
-        }
+        // determine the offset between the player position and the screen position.  This
+        // offset exists because the player is swinging and the screen is centered on the 
+        // rope, not the jumper
+        leadoutOffset = jumper.sprite.position.x - (-1*self.position.x);
         
         //XXX is it safe to just destroy this here or does this need to happen in update?
+        //XXX seems safe so far but I'm not 100% convinced
         world->DestroyJoint(jumperJoint);
         jumperJoint = NULL;
         finishScrolling = YES;
-        
-        CCLOG(@"\n\n#####  Updating leadout from %f to %f  #####\n\n", leadoutOffset, jumper.sprite.position.x - self.position.x);
-
     }
-    
-//	//Add a new body/atlas sprite at the touched location
-//	for( UITouch *touch in touches ) {
-//		CGPoint location = [touch locationInView: [touch view]];
-//		
-//		location = [[CCDirector sharedDirector] convertToGL: location];
-//		
-//		[self addNewSpriteWithCoords: location];
-//	}
 }
 
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration

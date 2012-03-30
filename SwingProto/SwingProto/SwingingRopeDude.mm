@@ -25,8 +25,8 @@
         
         // set the angles
         //XXX should make these and the speed configurable, maybe properties?
-        minAngleRads = -60*(M_PI/180.0);
-        maxAngleRads = 60*(M_PI/180.0);
+        minAngleRads = -50*(M_PI/180.0);
+        maxAngleRads = 50*(M_PI/180.0);
     }
     
     return self;

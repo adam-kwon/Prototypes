@@ -42,7 +42,7 @@
     
     b2FixtureDef jumperFixtureDef;
     jumperFixtureDef.shape = &jumperBox;
-    jumperFixtureDef.density = 1.0f;
+    jumperFixtureDef.density = 2.0f;
     jumperFixtureDef.friction = 0.3f;
     
     b2Fixture *jumperFixture = body->CreateFixture(&jumperFixtureDef);
