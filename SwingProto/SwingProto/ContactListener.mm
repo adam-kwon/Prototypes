@@ -27,11 +27,15 @@ ContactListener::ContactListener() {
 ContactListener::~ContactListener() {
 }
 
-void ContactListener::handleCatcherJumperCollision(CCNode<GameObject> *o1, CCNode<GameObject> *o2) {
+void ContactListener::handleCatcherJumperCollision(CCNode<GameObject> *o1, CCNode<GameObject> *o2, void *userData) {
     CCLOG(@"In handleCatcherJumperCollision\n");
     
     SwingingRopeDude *catcher = GAMEOBJECT_OF_TYPE(SwingingRopeDude, kGameObjectCatcher, o1, o2);    
-    [[HelloWorldLayer sharedLayer] catchJumper:catcher];
+    ContactLocation where = kContactTop;
+    if (userData != NULL) {
+        where = *((ContactLocation *)userData);
+    }
+    [[HelloWorldLayer sharedLayer] catchJumper:catcher at:where];
 }
 
 
@@ -43,7 +47,11 @@ void ContactListener::BeginContact(b2Contact *contact) {
     CCLOG(@"BeginContact:  %@  %@\n", o1, o2);
     
     if (IS_CATCHER(o1, o2) && IS_JUMPER(o1, o2)) {
-        this->handleCatcherJumperCollision(o1, o2);
+        void *data = contact->GetFixtureA()->GetUserData();
+        if ( data == NULL) {
+            data = contact->GetFixtureB()->GetUserData();
+        }
+        this->handleCatcherJumperCollision(o1, o2, data);
     }
 }
 

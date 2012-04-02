@@ -17,7 +17,7 @@ public:
 	ContactListener();
 	~ContactListener();
     
-    void handleCatcherJumperCollision(CCNode<GameObject> *o1, CCNode<GameObject> *o2);
+    void handleCatcherJumperCollision(CCNode<GameObject> *o1, CCNode<GameObject> *o2, void *userData);
     
 	virtual void BeginContact(b2Contact *contact);
 	virtual void EndContact(b2Contact *contact);

@@ -10,7 +10,6 @@
 // Import the interfaces
 #import "HelloWorldLayer.h"
 
-#import "Constants.h"
 #import "SwingingRopeDude.h"
 #import "JumpingDude.h"
 
@@ -403,7 +402,7 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
 }
 
 - (void) cleanupGame {
-    
+    self.position = ccp(0,0);
 }
    
 - (SwingingRopeDude *) createNextCatcher {
@@ -418,10 +417,12 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
     return rope;
 }
 
-- (void) catchJumper:(SwingingRopeDude *)catcher {
+- (void) catchJumper:(SwingingRopeDude *)catcher at:(ContactLocation)location{
     
-    if (catcher != lastCatcher)
+    if (catcher != lastCatcher) {
+        catchSide = location;
         nextCatcher = catcher;
+    }
 }
 
 - (void) createJumperJoint {
@@ -449,12 +450,21 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
         
         // set the anchor for the rope to be the top and bottom edges
         revJointDef.localAnchorA = b2Vec2(0,-[(nextCatcher.catcherSprite) boundingBox].size.height/PTM_RATIO*.8);
-        revJointDef.localAnchorB = b2Vec2(0, [(jumper.sprite) boundingBox].size.height/PTM_RATIO*.2);
+        
+        // Set the anchor to be the appropriate side of the jumper
+        if (catchSide == kContactTop) {
+            CCLOG(@"  creating joint at top\n");
+            revJointDef.referenceAngle = 0;
+            revJointDef.localAnchorB = b2Vec2(0, [(jumper.sprite) boundingBox].size.height/PTM_RATIO*.2);
+        } else {
+            CCLOG(@"  creating joint at bottom\n");
+            revJointDef.referenceAngle = 180*(M_PI/180.0);
+            revJointDef.localAnchorB = b2Vec2(0, [(jumper.sprite) boundingBox].size.height/PTM_RATIO*-.2);
+        }
 //        revJointDef.localAnchorB = b2Vec2(0, ([ropeSprite boundingBox].size.height/PTM_RATIO/2.1));
         revJointDef.lowerAngle = -10*(M_PI/180.0);
         revJointDef.upperAngle = 10*(M_PI/180.0);
         revJointDef.enableLimit = YES;
-        revJointDef.referenceAngle = 0;
         revJointDef.enableMotor = NO;
         jumperJoint = (b2RevoluteJoint *)world->CreateJoint(&revJointDef);
     } else {
@@ -526,7 +536,7 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
 {
     // if the jumper fell below the screen, stop now
     if (jumper.sprite.position.y < -200) {
-        [self unscheduleAllSelectors];
+//        [self unscheduleAllSelectors];
         [self cleanupGame];
         return;
     }
@@ -575,11 +585,11 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
         if (scrollDelta < MIN_SCROLL_DELTA)
             scrollDelta = MIN_SCROLL_DELTA;
         
-        CCLOG(@"  SCROLLING: curr self=%f, player=%f, leadout=%f, new=%f\n", self.position.x, jumper.sprite.position.x, leadoutOffset, -(jumper.sprite.position.x - leadoutOffset));
+//        CCLOG(@"  SCROLLING: curr self=%f, player=%f, leadout=%f, new=%f\n", self.position.x, jumper.sprite.position.x, leadoutOffset, -(jumper.sprite.position.x - leadoutOffset));
 
         self.position = ccp(newX, self.position.y);
     } else if (finishScrolling) {
-        CCLOG(@"finish scrolling: pos=%f, target=%f, delta=%f, new=%f\n", self.position.x, targetScrollPos, scrollDelta, (self.position.x - scrollDelta));
+//        CCLOG(@"finish scrolling: pos=%f, target=%f, delta=%f, new=%f\n", self.position.x, targetScrollPos, scrollDelta, (self.position.x - scrollDelta));
         if ((scrollDelta > 0 && self.position.x > targetScrollPos) ||
             (scrollDelta < 0 && self.position.x < targetScrollPos)) {
 

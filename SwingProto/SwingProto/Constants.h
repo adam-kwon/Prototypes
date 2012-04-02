@@ -31,4 +31,10 @@ typedef enum {
     kGameObjectJumper
 } GameObjectType;
 
+typedef enum {
+    kContactNone,
+    kContactTop,
+    kContactBottom
+} ContactLocation;
+
 #endif

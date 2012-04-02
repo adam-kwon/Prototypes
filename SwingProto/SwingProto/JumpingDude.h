@@ -16,6 +16,9 @@
     b2World *world;
     b2Body *body;
     CCSprite *sprite;
+    
+    ContactLocation top;
+    ContactLocation bottom;
 }
 
 - (id) initWithParent:(CCNode *)parent;
