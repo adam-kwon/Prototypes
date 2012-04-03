@@ -40,15 +40,6 @@
     jumperBodyDef.userData = self;
     body = world->CreateBody(&jumperBodyDef);
     
-//    b2PolygonShape jumperBox;
-//    jumperBox.SetAsBox([sprite boundingBox].size.width/PTM_RATIO/2, [sprite boundingBox].size.height/PTM_RATIO/2);
-//    
-//    b2FixtureDef jumperFixtureDef;
-//    jumperFixtureDef.shape = &jumperBox;
-//    jumperFixtureDef.density = 2.0f;
-//    jumperFixtureDef.friction = 0.3f;
-//    b2Fixture *jumperFixture = body->CreateFixture(&jumperFixtureDef);
-    
     b2Filter jumperFilter;
     jumperFilter.categoryBits = CATEGORY_JUMPER;
     jumperFilter.maskBits = CATEGORY_CATCHER;

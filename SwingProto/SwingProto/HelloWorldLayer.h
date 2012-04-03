@@ -26,9 +26,6 @@
     ContactListener *contactListener;
 	GLESDebugDraw *m_debugDraw;
     
-//    b2Body *holderBody;
-//    b2Body *catcherBody;
-    
     b2Body *jumperBody;
     
     JumpingDude *jumper;
