@@ -29,8 +29,6 @@
     float minAngleRads;
     float maxAngleRads;
     float motorSpeed;
-    
-    float catchOffset;
 }
 
 - (id) initWithParent:(CCNode *)theParent at:(CGPoint)pos withSpeed:(float)speed;

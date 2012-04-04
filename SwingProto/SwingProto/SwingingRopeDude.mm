@@ -25,8 +25,8 @@
         
         // set the angles
         //XXX should make these and the speed configurable, maybe properties?
-        minAngleRads = -50*(M_PI/180.0);
-        maxAngleRads = 50*(M_PI/180.0);
+        minAngleRads = -30*(M_PI/180.0);
+        maxAngleRads = 30*(M_PI/180.0);
     }
     
     return self;
@@ -97,9 +97,8 @@
     
     
     // create the catcher (swinging dude)
-    CGPoint catcherPos = ccp(anchorPos.x, anchorPos.y - [ropeSprite boundingBox].size.height/2.1);
+    CGPoint catcherPos = ccp(anchorPos.x, anchorPos.y - [ropeSprite boundingBox].size.height);
     catcherSprite = [CCSprite spriteWithFile:@"catcher.png"];
-    catchOffset = [catcherSprite boundingBox].size.height/PTM_RATIO*.75;
 
     catcherSprite.position = catcherPos;
     [parent addChild:catcherSprite];
@@ -132,7 +131,7 @@
     catcherJointDef.bodyA = ropeBody;
     catcherJointDef.bodyB = catcherBody;
     catcherJointDef.localAnchorA = b2Vec2(0, 0);
-    catcherJointDef.localAnchorB = b2Vec2(0,[catcherSprite boundingBox].size.height/PTM_RATIO/2*.8);
+    catcherJointDef.localAnchorB = b2Vec2(0,[catcherSprite boundingBox].size.height/PTM_RATIO);
     world->CreateJoint(&catcherJointDef);
 }
 
@@ -155,14 +154,22 @@
 
 -(void) moveTo:(CGPoint)pos {
 //    self.position = pos;
+    anchor->SetActive(NO);
+    ropeBody->SetActive(NO);
+    catcherBody->SetActive(NO);
     
 
     anchor->SetTransform(b2Vec2(pos.x/PTM_RATIO, pos.y/PTM_RATIO), 0);    
-    
-    ropeBody->SetTransform(b2Vec2(pos.x/PTM_RATIO, pos.y/PTM_RATIO), 0);
 
+    ropeBody->SetTransform(b2Vec2(pos.x/PTM_RATIO, pos.y/PTM_RATIO), 0);
+    ropeSprite.position = pos;
+    
+    // catcher position
+    CGPoint catcherPos = ccp(pos.x, pos.y - [ropeSprite boundingBox].size.height/2.1);
+    
     //XXX necessary?  Will the weld joint automatically move him with the rope?
-    catcherBody->SetTransform(b2Vec2(pos.x/PTM_RATIO, pos.y/PTM_RATIO), 0);
+    catcherBody->SetTransform(b2Vec2(catcherPos.x/PTM_RATIO, catcherPos.y/PTM_RATIO), 0);
+    catcherSprite.position = catcherPos;
     
 }
 
@@ -177,6 +184,18 @@
 
 - (GameObjectType) gameObjectType {
     return kGameObjectCatcher;
+}
+
+- (void) dealloc {
+ 
+    world->DestroyBody(catcherBody);
+    world->DestroyBody(ropeBody);
+    world->DestroyBody(anchor);
+    
+    [parent removeChild:catcherSprite cleanup:YES];
+    [parent removeChild:ropeSprite cleanup:YES];
+    
+    [super dealloc];
 }
 
 

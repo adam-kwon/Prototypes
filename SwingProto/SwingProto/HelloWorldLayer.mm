@@ -72,12 +72,12 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
         
         instanceOfHelloWorldLayer = self;
 		
-		CGSize screenSize = [CCDirector sharedDirector].winSize;
+		screenSize = [CCDirector sharedDirector].winSize;
 		CCLOG(@"Screen width %0.2f screen height %0.2f",screenSize.width,screenSize.height);
 		
 		// Define the gravity vector.
 		b2Vec2 gravity;
-		gravity.Set(0.0f, -10.0f);
+		gravity.Set(0.0f, -30.0f);
 		
 		// Do we want to let bodies sleep?
 		// This will speed up the physics simulation
@@ -111,27 +111,34 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
 
 - (void) initGame {
     
-    CGSize screenSize = [CCDirector sharedDirector].winSize;
-
     baseSpeed = 3;
-    baseXDelta = screenSize.width*.4;
-    catcherXPos = -(screenSize.width*.2);
-    catcherYPos = screenSize.height*.75;
+    baseXDelta = screenSize.width*.5;
+    catcherXPos = screenSize.width*.25;
+    catcherYPos = screenSize.height*.9;
     
-    SwingingRopeDude *firstCatcher = [self createNextCatcher];
-    for (int i=0; i < 10; i++) {
-        [self createNextCatcher];
-    }
+    CGPoint startPos = ccp(screenSize.width*.25, screenSize.height*.9);
+    
+//    SwingingRopeDude *firstCatcher = [self createNextCatcher];
+//    for (int i=0; i < 10; i++) {
+//        [self createNextCatcher];
+//    }
+    SwingingRopeDude *firstCatcher = [[SwingingRopeDude alloc] initWithParent:self at:startPos withSpeed:3];
+    [firstCatcher createPhysicsObject:world];
     
     // create the jumper
     CCSprite *catcher = firstCatcher.catcherSprite;
     finishScrolling = NO;
+    needToScroll = NO;
     leadOut = screenSize.width*.6;
+    
+    newCatcher = [self createNextCatcher];
+    offscreenCatcher = [self createNextCatcher];
     
     CGPoint jumperPos = ccp(catcher.position.x, catcher.position.y - [catcher boundingBox].size.height*.7);
     jumper = [[JumpingDude alloc] initWithParent:self];
     [jumper createPhysicsObject:world at:jumperPos];
 
+    cleanupCatcher = nil;
     nextCatcher = firstCatcher;
     jumperJoint = NULL;
     [self createJumperJoint];
@@ -145,7 +152,7 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
 }
    
 - (SwingingRopeDude *) createNextCatcher {
-    catcherXPos += (baseXDelta*(1 + (CCRANDOM_0_1()/5)));
+    catcherXPos += baseXDelta;
     
     SwingingRopeDude *rope = [[SwingingRopeDude alloc] initWithParent:self at:ccp(catcherXPos, catcherYPos) withSpeed:baseSpeed];
     [rope createPhysicsObject:world];
@@ -168,7 +175,7 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
     
     //XXX don't think it's possible to get here if it's non null
     if (jumperJoint == NULL) {
-        targetScrollPos = -(lastCatcher.catcherSprite.position.x);
+//        targetScrollPos = -(nextCatcher.catcherSprite.position.x + screenSize.width*.25);
 //        + leadOut);
         
         CCLOG(@"  curr pos=%f, nextCatcher pos=%f, leadout=%f, target pos=%f\n", self.position.x, nextCatcher.catcherSprite.position.x, leadOut, targetScrollPos);
@@ -310,23 +317,51 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
         nextCatcher = nil;
     }
     
-    if (jumperJoint == NULL) {
-        float newX = -(jumper.sprite.position.x - leadoutOffset);
-        scrollDelta = self.position.x - newX;
-        if (scrollDelta < MIN_SCROLL_DELTA)
-            scrollDelta = MIN_SCROLL_DELTA;
+    if (needToScroll) {
         
-//        CCLOG(@"  SCROLLING: curr self=%f, player=%f, leadout=%f, new=%f\n", self.position.x, jumper.sprite.position.x, leadoutOffset, -(jumper.sprite.position.x - leadoutOffset));
+        BOOL doCleanup = NO;
+        
+        if (jumperJoint == NULL) {
+            float newX = -(jumper.sprite.position.x - leadoutOffset);
+            
+            // only scroll forwards, and stop scrolling once we reach the next catcher
+            if (newX < self.position.x ) {
+                scrollDelta = self.position.x - newX;
+                if (scrollDelta < MIN_SCROLL_DELTA)
+                    scrollDelta = MIN_SCROLL_DELTA;
+                
+                if (newX < targetScrollPos) {
+                    newX = targetScrollPos;
+                    doCleanup = YES;
+                }
+            
+    //        CCLOG(@"  SCROLLING: curr self=%f, player=%f, leadout=%f, new=%f\n", self.position.x, jumper.sprite.position.x, leadoutOffset, -(jumper.sprite.position.x - leadoutOffset));
 
-        self.position = ccp(newX, self.position.y);
-    } else if (finishScrolling) {
-//        CCLOG(@"finish scrolling: pos=%f, target=%f, delta=%f, new=%f\n", self.position.x, targetScrollPos, scrollDelta, (self.position.x - scrollDelta));
-        if ((scrollDelta > 0 && self.position.x > targetScrollPos) ||
-            (scrollDelta < 0 && self.position.x < targetScrollPos)) {
+                self.position = ccp(newX, self.position.y);
+            }
+        } else if (finishScrolling) {
+    //        CCLOG(@"finish scrolling: pos=%f, target=%f, delta=%f, new=%f\n", self.position.x, targetScrollPos, scrollDelta, (self.position.x - scrollDelta));
+            if ((scrollDelta > 0 && self.position.x > targetScrollPos) ||
+                (scrollDelta < 0 && self.position.x < targetScrollPos)) {
 
-            self.position = ccp(self.position.x - scrollDelta, self.position.y);            
-        } else {
+                self.position = ccp(self.position.x - scrollDelta, self.position.y);            
+            } else {
+                doCleanup = YES;
+            }
+        }
+        
+        if (doCleanup) {
+            CCLOG(@"=== Cleaning up catcher and creating new offscreen catcher ===\n");
             finishScrolling = NO;
+            needToScroll = NO;
+            
+            if (cleanupCatcher != nil) {
+                [cleanupCatcher dealloc];
+                cleanupCatcher = nil;
+            }
+            
+            newCatcher = offscreenCatcher;
+            offscreenCatcher = [self createNextCatcher];
         }
     }
 }
@@ -346,6 +381,11 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
         world->DestroyJoint(jumperJoint);
         jumperJoint = NULL;
         finishScrolling = YES;
+        cleanupCatcher = lastCatcher;
+        needToScroll = YES;
+        targetScrollPos = -(newCatcher.catcherSprite.position.x - screenSize.width*.25);
+        
+        CCLOG(@"\n\n###  JUMPING!  self pos=%f, curr catcher=%f, newCatcher=%f, targetScrollPos=%f  ###\n\n", self.position.x, lastCatcher.catcherSprite.position.x, newCatcher.catcherSprite.position.x, targetScrollPos);
     }
 }
 

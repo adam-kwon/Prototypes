@@ -34,6 +34,7 @@
     b2RevoluteJoint *revJoint;
     b2RevoluteJoint *revJoint2;
     
+    CGSize screenSize;
     float minAngleRads;
     float maxAngleRads;
     float baseSpeed;
@@ -44,11 +45,15 @@
     ContactLocation catchSide;
     SwingingRopeDude *nextCatcher;
     SwingingRopeDude *lastCatcher;
+    SwingingRopeDude *cleanupCatcher;
+    SwingingRopeDude *newCatcher;
+    SwingingRopeDude *offscreenCatcher;
     
     float leadoutOffset;
     float lastJumperPos;
     
     BOOL finishScrolling;
+    BOOL needToScroll;
     float leadOut;
     float scrollDelta;
     
