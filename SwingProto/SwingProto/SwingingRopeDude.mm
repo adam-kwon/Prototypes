@@ -171,6 +171,9 @@
     catcherBody->SetTransform(b2Vec2(catcherPos.x/PTM_RATIO, catcherPos.y/PTM_RATIO), 0);
     catcherSprite.position = catcherPos;
     
+    anchor->SetActive(YES);
+    ropeBody->SetActive(YES);
+    catcherBody->SetActive(YES);    
 }
 
 -(void) showAt:(CGPoint)pos {

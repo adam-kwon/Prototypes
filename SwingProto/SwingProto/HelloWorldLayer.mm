@@ -351,17 +351,20 @@ static HelloWorldLayer* instanceOfHelloWorldLayer;
         }
         
         if (doCleanup) {
-            CCLOG(@"=== Cleaning up catcher and creating new offscreen catcher ===\n");
+//            CCLOG(@"=== Cleaning up catcher and creating new offscreen catcher ===\n");
             finishScrolling = NO;
             needToScroll = NO;
             
-            if (cleanupCatcher != nil) {
-                [cleanupCatcher dealloc];
-                cleanupCatcher = nil;
-            }
+//            if (cleanupCatcher != nil) {
+//                [cleanupCatcher dealloc];
+//                cleanupCatcher = nil;
+//            }
+//            
+//            newCatcher = offscreenCatcher;
+//            offscreenCatcher = [self createNextCatcher];
+            catcherXPos += baseXDelta;
+            [cleanupCatcher showAt:ccp(catcherXPos, catcherYPos)];
             
-            newCatcher = offscreenCatcher;
-            offscreenCatcher = [self createNextCatcher];
         }
     }
 }
