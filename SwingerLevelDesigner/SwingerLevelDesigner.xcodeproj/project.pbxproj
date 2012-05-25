@@ -1,0 +1,301 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		39258DE5156F2E3600311702 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39258DE4156F2E3600311702 /* Cocoa.framework */; };
+		39258DEF156F2E3600311702 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 39258DED156F2E3600311702 /* InfoPlist.strings */; };
+		39258DF1156F2E3600311702 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 39258DF0156F2E3600311702 /* main.m */; };
+		39258DF5156F2E3600311702 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 39258DF3156F2E3600311702 /* Credits.rtf */; };
+		39258DF8156F2E3600311702 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 39258DF7156F2E3600311702 /* AppDelegate.m */; };
+		39258DFB156F2E3600311702 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39258DF9156F2E3600311702 /* MainMenu.xib */; };
+		39258E05156F2E9E00311702 /* StretchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39258E04156F2E9E00311702 /* StretchView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		39258DE0156F2E3600311702 /* SwingerLevelDesigner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwingerLevelDesigner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		39258DE4156F2E3600311702 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		39258DE7156F2E3600311702 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		39258DE8156F2E3600311702 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		39258DE9156F2E3600311702 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		39258DEC156F2E3600311702 /* SwingerLevelDesigner-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SwingerLevelDesigner-Info.plist"; sourceTree = "<group>"; };
+		39258DEE156F2E3600311702 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		39258DF0156F2E3600311702 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		39258DF2156F2E3600311702 /* SwingerLevelDesigner-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwingerLevelDesigner-Prefix.pch"; sourceTree = "<group>"; };
+		39258DF4156F2E3600311702 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		39258DF6156F2E3600311702 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		39258DF7156F2E3600311702 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		39258DFA156F2E3600311702 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		39258E03156F2E9E00311702 /* StretchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StretchView.h; sourceTree = "<group>"; };
+		39258E04156F2E9E00311702 /* StretchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StretchView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		39258DDD156F2E3600311702 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39258DE5156F2E3600311702 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		39258DD5156F2E3600311702 = {
+			isa = PBXGroup;
+			children = (
+				39258DEA156F2E3600311702 /* SwingerLevelDesigner */,
+				39258DE3156F2E3600311702 /* Frameworks */,
+				39258DE1156F2E3600311702 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		39258DE1156F2E3600311702 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				39258DE0156F2E3600311702 /* SwingerLevelDesigner.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		39258DE3156F2E3600311702 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				39258DE4156F2E3600311702 /* Cocoa.framework */,
+				39258DE6156F2E3600311702 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		39258DE6156F2E3600311702 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				39258DE7156F2E3600311702 /* AppKit.framework */,
+				39258DE8156F2E3600311702 /* CoreData.framework */,
+				39258DE9156F2E3600311702 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		39258DEA156F2E3600311702 /* SwingerLevelDesigner */ = {
+			isa = PBXGroup;
+			children = (
+				39258DF6156F2E3600311702 /* AppDelegate.h */,
+				39258DF7156F2E3600311702 /* AppDelegate.m */,
+				39258DF9156F2E3600311702 /* MainMenu.xib */,
+				39258DEB156F2E3600311702 /* Supporting Files */,
+				39258E03156F2E9E00311702 /* StretchView.h */,
+				39258E04156F2E9E00311702 /* StretchView.m */,
+			);
+			path = SwingerLevelDesigner;
+			sourceTree = "<group>";
+		};
+		39258DEB156F2E3600311702 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				39258DEC156F2E3600311702 /* SwingerLevelDesigner-Info.plist */,
+				39258DED156F2E3600311702 /* InfoPlist.strings */,
+				39258DF0156F2E3600311702 /* main.m */,
+				39258DF2156F2E3600311702 /* SwingerLevelDesigner-Prefix.pch */,
+				39258DF3156F2E3600311702 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		39258DDF156F2E3600311702 /* SwingerLevelDesigner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 39258DFE156F2E3600311702 /* Build configuration list for PBXNativeTarget "SwingerLevelDesigner" */;
+			buildPhases = (
+				39258DDC156F2E3600311702 /* Sources */,
+				39258DDD156F2E3600311702 /* Frameworks */,
+				39258DDE156F2E3600311702 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwingerLevelDesigner;
+			productName = SwingerLevelDesigner;
+			productReference = 39258DE0156F2E3600311702 /* SwingerLevelDesigner.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		39258DD7156F2E3600311702 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 39258DDA156F2E3600311702 /* Build configuration list for PBXProject "SwingerLevelDesigner" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 39258DD5156F2E3600311702;
+			productRefGroup = 39258DE1156F2E3600311702 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				39258DDF156F2E3600311702 /* SwingerLevelDesigner */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		39258DDE156F2E3600311702 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39258DEF156F2E3600311702 /* InfoPlist.strings in Resources */,
+				39258DF5156F2E3600311702 /* Credits.rtf in Resources */,
+				39258DFB156F2E3600311702 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		39258DDC156F2E3600311702 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39258DF1156F2E3600311702 /* main.m in Sources */,
+				39258DF8156F2E3600311702 /* AppDelegate.m in Sources */,
+				39258E05156F2E9E00311702 /* StretchView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		39258DED156F2E3600311702 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				39258DEE156F2E3600311702 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		39258DF3156F2E3600311702 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				39258DF4156F2E3600311702 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		39258DF9156F2E3600311702 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				39258DFA156F2E3600311702 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		39258DFC156F2E3600311702 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		39258DFD156F2E3600311702 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		39258DFF156F2E3600311702 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SwingerLevelDesigner/SwingerLevelDesigner-Prefix.pch";
+				INFOPLIST_FILE = "SwingerLevelDesigner/SwingerLevelDesigner-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		39258E00156F2E3600311702 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SwingerLevelDesigner/SwingerLevelDesigner-Prefix.pch";
+				INFOPLIST_FILE = "SwingerLevelDesigner/SwingerLevelDesigner-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		39258DDA156F2E3600311702 /* Build configuration list for PBXProject "SwingerLevelDesigner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				39258DFC156F2E3600311702 /* Debug */,
+				39258DFD156F2E3600311702 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		39258DFE156F2E3600311702 /* Build configuration list for PBXNativeTarget "SwingerLevelDesigner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				39258DFF156F2E3600311702 /* Debug */,
+				39258E00156F2E3600311702 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 39258DD7156F2E3600311702 /* Project object */;
+}
