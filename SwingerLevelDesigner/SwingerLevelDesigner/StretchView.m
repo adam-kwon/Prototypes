@@ -26,7 +26,7 @@
         }
         
         [path closePath];
-        
+        opacity = 1.0;
     }
     
     return self;
@@ -48,6 +48,33 @@
     
     [[NSColor whiteColor] set];
     [path stroke];
+    
+    if (image) {
+        NSRect imageRect;
+        imageRect.origin = NSZeroPoint;
+        imageRect.size = [image size];
+        NSRect drawingRect = imageRect;
+        [image drawInRect:drawingRect fromRect:imageRect operation:NSCompositeSourceOver fraction:opacity];
+    }
+}
+
+#pragma mark Accessors
+- (NSImage*)image {
+    return image;
+}
+
+- (void)setImage:(NSImage *)newImage {
+    image = newImage;
+    [self setNeedsDisplay:YES];
+}
+
+- (float) opacity {
+    return opacity;
+}
+
+- (void) setOpacity:(float)x {
+    opacity = x;
+    [self setNeedsDisplay:YES];
 }
 
 #pragma mark Events

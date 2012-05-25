@@ -10,7 +10,14 @@
 
 @interface StretchView : NSView {
     NSBezierPath *path;
+    NSImage *image;
+    float opacity;
 }
 
-- (NSPoint) randomPoint;
+- (NSPoint)randomPoint;
+- (NSRect)currentRect;
+
+@property (assign) float opacity;
+@property (strong) NSImage *image;
+
 @end
