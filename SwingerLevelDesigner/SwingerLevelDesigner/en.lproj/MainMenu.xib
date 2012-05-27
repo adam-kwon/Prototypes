@@ -16,9 +16,7 @@
 			<string>NSScrollView</string>
 			<string>NSWindowTemplate</string>
 			<string>NSMenuItem</string>
-			<string>NSSliderCell</string>
 			<string>NSCustomView</string>
-			<string>NSSlider</string>
 			<string>NSUserDefaultsController</string>
 			<string>NSScroller</string>
 			<string>NSCustomObject</string>
@@ -1298,7 +1296,7 @@
 			<object class="NSWindowTemplate" id="972006081">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{335, 390}, {492, 360}}</string>
+				<string key="NSWindowRect">{{335, 390}, {960, 588}}</string>
 				<int key="NSWTFlags">1954021376</int>
 				<string key="NSWindowTitle">SwingerLevelDesigner</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -1318,8 +1316,8 @@
 									<array class="NSMutableArray" key="NSSubviews">
 										<object class="NSCustomView" id="1012778650">
 											<reference key="NSNextResponder" ref="1011522955"/>
-											<int key="NSvFlags">292</int>
-											<string key="NSFrameSize">{1000, 360}</string>
+											<int key="NSvFlags">301</int>
+											<string key="NSFrameSize">{960, 640}</string>
 											<reference key="NSSuperview" ref="1011522955"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="112575440"/>
@@ -1327,7 +1325,7 @@
 											<string key="NSClassName">StretchView</string>
 										</object>
 									</array>
-									<string key="NSFrame">{{1, 1}, {476, 323}}</string>
+									<string key="NSFrame">{{1, 1}, {965, 573}}</string>
 									<reference key="NSSuperview" ref="872728037"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="1012778650"/>
@@ -1347,7 +1345,7 @@
 								<object class="NSScroller" id="112575440">
 									<reference key="NSNextResponder" ref="872728037"/>
 									<int key="NSvFlags">256</int>
-									<string key="NSFrame">{{477, 1}, {15, 323}}</string>
+									<string key="NSFrame">{{966, 1}, {15, 573}}</string>
 									<reference key="NSSuperview" ref="872728037"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="328836842"/>
@@ -1356,60 +1354,34 @@
 									<reference key="NSTarget" ref="872728037"/>
 									<string key="NSAction">_doScroller:</string>
 									<double key="NSCurValue">1</double>
-									<double key="NSPercent">0.89722222222222225</double>
+									<double key="NSPercent">0.89531249999999996</double>
 								</object>
 								<object class="NSScroller" id="328836842">
 									<reference key="NSNextResponder" ref="872728037"/>
 									<int key="NSvFlags">256</int>
-									<string key="NSFrame">{{1, 324}, {476, 15}}</string>
+									<string key="NSFrame">{{1, 574}, {965, 15}}</string>
 									<reference key="NSSuperview" ref="872728037"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView" ref="345131771"/>
+									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:30</string>
-									<bool key="NSEnabled">YES</bool>
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="872728037"/>
 									<string key="NSAction">_doScroller:</string>
-									<double key="NSPercent">0.47599999999999998</double>
+									<double key="NSPercent">0.73541666666666672</double>
 								</object>
 							</array>
-							<string key="NSFrame">{{0, 20}, {493, 340}}</string>
+							<string key="NSFrame">{{-1, -1}, {982, 590}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1011522955"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
-							<int key="NSsFlags">133362</int>
+							<int key="NSsFlags">133234</int>
 							<reference key="NSVScroller" ref="112575440"/>
 							<reference key="NSHScroller" ref="328836842"/>
 							<reference key="NSContentView" ref="1011522955"/>
 						</object>
-						<object class="NSSlider" id="345131771">
-							<reference key="NSNextResponder" ref="439893737"/>
-							<int key="NSvFlags">294</int>
-							<string key="NSFrame">{{18, 0}, {456, 21}}</string>
-							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
-							<string key="NSReuseIdentifierKey">_NS:9</string>
-							<bool key="NSEnabled">YES</bool>
-							<object class="NSSliderCell" key="NSCell" id="1015837863">
-								<int key="NSCellFlags">-2079981824</int>
-								<int key="NSCellFlags2">0</int>
-								<string key="NSContents"/>
-								<string key="NSCellIdentifier">_NS:9</string>
-								<reference key="NSControlView" ref="345131771"/>
-								<double key="NSMaxValue">1</double>
-								<double key="NSMinValue">0.0</double>
-								<double key="NSValue">1</double>
-								<double key="NSAltIncValue">0.0</double>
-								<int key="NSNumberOfTickMarks">0</int>
-								<int key="NSTickMarkPosition">1</int>
-								<bool key="NSAllowsTickMarkValuesOnly">NO</bool>
-								<bool key="NSVertical">NO</bool>
-							</object>
-						</object>
 					</array>
-					<string key="NSFrameSize">{492, 360}</string>
+					<string key="NSFrameSize">{960, 588}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="872728037"/>
@@ -1424,7 +1396,7 @@
 			<object class="NSCustomObject" id="755631768">
 				<string key="NSClassName">NSFontManager</string>
 			</object>
-			<object class="NSUserDefaultsController" id="796133811">
+			<object class="NSUserDefaultsController" id="698718470">
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</array>
@@ -2126,22 +2098,6 @@
 					</object>
 					<int key="connectionID">631</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: stretchView.opacity</string>
-						<reference key="source" ref="345131771"/>
-						<reference key="destination" ref="976324537"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="345131771"/>
-							<reference key="NSDestination" ref="976324537"/>
-							<string key="NSLabel">value: stretchView.opacity</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">stretchView.opacity</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">634</int>
-				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -2668,7 +2624,6 @@
 						<reference key="object" ref="439893737"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="872728037"/>
-							<reference ref="345131771"/>
 						</array>
 						<reference key="parent" ref="972006081"/>
 					</object>
@@ -3171,21 +3126,8 @@
 						<reference key="parent" ref="872728037"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">620</int>
-						<reference key="object" ref="345131771"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="1015837863"/>
-						</array>
-						<reference key="parent" ref="439893737"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">621</int>
-						<reference key="object" ref="1015837863"/>
-						<reference key="parent" ref="345131771"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">622</int>
-						<reference key="object" ref="796133811"/>
+						<reference key="object" ref="698718470"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</array>
@@ -3338,8 +3280,6 @@
 				<string key="616.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="618.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="619.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="620.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="621.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="622.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="73.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>

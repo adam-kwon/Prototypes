@@ -14,6 +14,7 @@
 		39258DF8156F2E3600311702 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 39258DF7156F2E3600311702 /* AppDelegate.m */; };
 		39258DFB156F2E3600311702 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39258DF9156F2E3600311702 /* MainMenu.xib */; };
 		39258E05156F2E9E00311702 /* StretchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39258E04156F2E9E00311702 /* StretchView.m */; };
+		39258E301571B72A00311702 /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 39258E2F1571B72A00311702 /* GameObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		39258DFA156F2E3600311702 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		39258E03156F2E9E00311702 /* StretchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StretchView.h; sourceTree = "<group>"; };
 		39258E04156F2E9E00311702 /* StretchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StretchView.m; sourceTree = "<group>"; };
+		39258E2E1571B72A00311702 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameObject.h; path = ../../../SwingerLevelDesigner/SwingerLevelDesigner/GameObject.h; sourceTree = "<group>"; };
+		39258E2F1571B72A00311702 /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameObject.m; path = ../../../SwingerLevelDesigner/SwingerLevelDesigner/GameObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +94,8 @@
 				39258DEB156F2E3600311702 /* Supporting Files */,
 				39258E03156F2E9E00311702 /* StretchView.h */,
 				39258E04156F2E9E00311702 /* StretchView.m */,
+				39258E2E1571B72A00311702 /* GameObject.h */,
+				39258E2F1571B72A00311702 /* GameObject.m */,
 			);
 			path = SwingerLevelDesigner;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 				39258DF1156F2E3600311702 /* main.m in Sources */,
 				39258DF8156F2E3600311702 /* AppDelegate.m in Sources */,
 				39258E05156F2E9E00311702 /* StretchView.m in Sources */,
+				39258E301571B72A00311702 /* GameObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +300,7 @@
 				39258E00156F2E3600311702 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

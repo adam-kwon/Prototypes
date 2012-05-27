@@ -7,6 +7,11 @@
 //
 
 #import "StretchView.h"
+#import "GameObject.h"
+
+@interface StretchView(Private)
+- (void) drawGrid:(CGContextRef)ctx;
+@end
 
 @implementation StretchView
 
@@ -14,57 +19,58 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        path = [NSBezierPath bezierPath];
-        [path setLineWidth:3.0];
-        
-        NSPoint p = [self randomPoint];
-        [path moveToPoint:p];
-        
-        for (int i = 0; i < 15; i++) {
-            p = [self randomPoint];
-            [path lineToPoint:p];
-        }
-        
-        [path closePath];
+        gameObjects = [[NSMutableArray alloc] init];
+        currentPoint = CGPointZero;
         opacity = 1.0;
     }
     
     return self;
 }
 
-- (NSPoint) randomPoint {
-    NSPoint result;
-    NSRect r = [self bounds];
-    result.x = r.origin.x + arc4random() % (int)r.size.width;
-    result.y = r.origin.y + arc4random() % (int)r.size.height;
-    return result;
+
+- (void) drawGrid:(CGContextRef)ctx {
+    // Origin is lower left corner
+    NSBezierPath *gridLinePath = [NSBezierPath bezierPath];
+    //CGFloat pattern[2] = {2, 2};
+    //[gridLinePath setLineDash:pattern count:2 phase:0];
+    [gridLinePath moveToPoint:CGPointMake(10, 0)];
+    [gridLinePath lineToPoint:CGPointMake(10, 640)];
+    
+    [[NSColor grayColor] set];
+    [gridLinePath setLineWidth:0.2];
+    [gridLinePath stroke];
+    
+    
+    CGContextSaveGState(ctx);
+    
+    for (int i = 1; i < 960/10; i++) {
+        CGContextTranslateCTM(ctx, 10, 0);
+        [gridLinePath stroke];
+    }
+    
+    CGContextRestoreGState(ctx);    
 }
 
 - (void)drawRect:(NSRect)dirtyRect
 {
+    CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
+
     NSRect bounds = [self bounds];
-    [[NSColor greenColor] set];
-    [NSBezierPath fillRect:bounds];
-    
     [[NSColor whiteColor] set];
-    [path stroke];
-    
-    if (image) {
-        NSRect imageRect;
-        imageRect.origin = NSZeroPoint;
-        imageRect.size = [image size];
-        NSRect drawingRect = imageRect;
-        [image drawInRect:drawingRect fromRect:imageRect operation:NSCompositeSourceOver fraction:opacity];
+    [NSBezierPath fillRect:bounds];
+
+    [self drawGrid:ctx];
+        
+    for (GameObject *gameObject in gameObjects) {
+        [gameObject draw:ctx];
     }
 }
 
 #pragma mark Accessors
-- (NSImage*)image {
-    return image;
-}
 
-- (void)setImage:(NSImage *)newImage {
-    image = newImage;
+- (void) addGameObject:(GameObject*)gameObject {
+    gameObject.position = CGPointZero;
+    [gameObjects addObject:gameObject];
     [self setNeedsDisplay:YES];
 }
 
@@ -79,15 +85,56 @@
 
 #pragma mark Events
 - (void)mouseDown:(NSEvent *)theEvent {
-    NSLog(@"mouseDown: %ld", [theEvent clickCount]);
+    NSPoint p = [theEvent locationInWindow];
+    downPoint = [self convertPoint:p fromView:nil];
+    currentPoint = downPoint;
+    
+    for (GameObject *gameObject in gameObjects) {
+        CGRect imageRect = [gameObject imageRect];
+        if (CGRectContainsPoint(imageRect, downPoint)) {
+            gameObject.selected = YES;
+        }
+    }
+
+    
+//    NSLog(@"mouseDown: %f %f   imagepos: %f %f", downPoint.x, downPoint.y, image.position.x, image.position.y);
+
+
+    [self setNeedsDisplay:YES];
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent {
     NSPoint p = [theEvent locationInWindow];
-    NSLog(@"mouseDragged: %@", NSStringFromPoint(p));
+    currentPoint = [self convertPoint:p fromView:nil];
+    [self autoscroll:theEvent];
+    [self setNeedsDisplay:YES];
+    for (GameObject *gameObject in gameObjects) {
+        if (gameObject.selected) {
+            CGFloat deltaX = currentPoint.x - downPoint.x;
+            CGFloat deltaY = currentPoint.y - downPoint.y;
+            NSLog(@"x=%f y=%f", deltaX, deltaY);
+            gameObject.position = CGPointMake(gameObject.position.x + deltaX, gameObject.position.y + deltaY);
+            downPoint = currentPoint;
+        }
+    }
+    
 }
 
 - (void)mouseUp:(NSEvent *)theEvent {
-    NSLog(@"mouseUp");
+    for (GameObject *gameObject in gameObjects) {
+        gameObject.selected = NO;
+    }
+
+//    NSPoint p = [theEvent locationInWindow];
+//    currentPoint = [self convertPoint:p fromView:nil];
+//    [self setNeedsDisplay:YES];
+//    NSLog(@"mouseUp");
+}
+
+- (NSRect) currentRect {
+//    float minX = MIN(downPoint.x, currentPoint.x);
+//    float maxX = MAX(downPoint.x, currentPoint.x);
+//    float minY = MIN(downPoint.y, currentPoint.y);
+//    float maxY = MAX(downPoint.y, currentPoint.y);
 }
 @end

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "StretchView.h"
+#import "GameObject.h"
 
 @implementation AppDelegate
 
@@ -25,8 +26,8 @@
                   completionHandler:^ (NSInteger result) {
                       
         if (result == NSOKButton) {
-            NSImage *image = [[NSImage alloc] initWithContentsOfURL:[panel URL]];
-            [stretchView setImage:image];
+            GameObject *image = [[GameObject alloc] initWithContentsOfURL:[panel URL]];
+            [stretchView addGameObject:image];
         }
         panel = nil;
      }];
