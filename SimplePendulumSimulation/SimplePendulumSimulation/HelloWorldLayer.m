@@ -58,10 +58,13 @@
     // period = (2*PI) * sqrt(length/gravity)
     // theta(t) = maxTheta * cos(2*PI*t / period)
     
+    
     float phase = swingAngle * cosf((2*M_PI*(dtSum))/period);
     float x = winSize.width/2 - swingScale * sinf(phase);
     float y = winSize.height - (swingScale * cosf(phase));
     dtSum += dt;
+
+    float currentVelocity = sqrtf(2*gravity*ropeLength*(cosf(phase) - cosf(swingAngle)));
 
     catcher.position = ccp(x, y);
     catcher.rotation = CC_RADIANS_TO_DEGREES(phase);
