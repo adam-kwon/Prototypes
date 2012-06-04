@@ -37,30 +37,38 @@
 		// ask director the the window size
 		winSize = [[CCDirector sharedDirector] winSize];
 	
-        swingAngle = CC_DEGREES_TO_RADIANS(45);
-        timeNow = tRef = CFAbsoluteTimeGetCurrent();
-        swingSpeed = 1.0;
+        swingAngle = CC_DEGREES_TO_RADIANS(90);
         gravity = 9.8;
-        ropeLength = 3.0;
-        omega = swingSpeed * sqrtf(gravity / ropeLength);
+        ropeLength = 1;
+        swingScale = 150;
+ 
+        period = 2*M_PI*sqrtf(ropeLength/gravity);
+        
         
         catcher = [CCSprite spriteWithFile:@"Catcher.png"];
         catcher.position = ccp(winSize.width/2, 20);
         [self addChild:catcher];
-        
         [self scheduleUpdate];
 	}
 	return self;
 }
 
 - (void) update:(ccTime)dt {
-    float phase = swingAngle * sinf(omega * (timeNow - tRef));
-    float x = winSize.width/2 + 100 * sinf(phase);
-    float y = 150 + 100 * -cosf(phase);
-    timeNow += dt;
+    // Equations used (http://en.wikipedia.org/wiki/Pendulum)
+    // period = (2*PI) * sqrt(length/gravity)
+    // theta(t) = maxTheta * cos(2*PI*t / period)
     
+    float phase = swingAngle * cosf((2*M_PI*(dtSum))/period);
+    float x = winSize.width/2 - swingScale * sinf(phase);
+    float y = winSize.height - (swingScale * cosf(phase));
+    dtSum += dt;
+
     catcher.position = ccp(x, y);
-    catcher.rotation = -CC_RADIANS_TO_DEGREES(phase);
+    catcher.rotation = CC_RADIANS_TO_DEGREES(phase);
+}
+
+- (void) draw {
+    ccDrawLine(ccp(winSize.width/2, winSize.height), catcher.position);
 }
 
 // on "dealloc" you need to release all your retained objects

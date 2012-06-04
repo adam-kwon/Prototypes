@@ -17,15 +17,13 @@
     
     CCSprite *catcher;
     
-    double timeNow;
-    double tRef;
-
-    float omega;
+    double dtSum;
+    
     float ropeLength;
-    float swingSpeed;
     float swingAngle;
     float gravity;
-    
+    float swingScale;
+    float period;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
