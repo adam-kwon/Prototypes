@@ -20,7 +20,8 @@
     b2Body *body;
     b2World *world;
     
-    b2DistanceJoint *swingJoint;
+//    b2DistanceJoint *swingJoint;
+    b2RopeJoint *swingJoint;
     
     b2Body *currentAnchor;
     
@@ -33,7 +34,7 @@
 - (void) shortenRope:(float)dt;
 
 @property (nonatomic, readonly) b2Body *currentAnchor;
-@property (nonatomic, readonly) b2DistanceJoint *swingJoint;
+@property (nonatomic, readonly) b2RopeJoint *swingJoint;
 @property (nonatomic, readwrite, assign) float maxRopeLength;
 
 @end

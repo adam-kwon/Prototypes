@@ -64,12 +64,8 @@ static GamePlayLayer* instanceOfGamePlayLayer;
 		b2Vec2 gravity;
 		gravity.Set(0.0f, -10.0f);
 		
-		// Do we want to let bodies sleep?
-		// This will speed up the physics simulation
-		bool doSleep = true;
-		
 		// Construct a world object, which will hold and simulate the rigid bodies.
-		world = new b2World(gravity, doSleep);
+		world = new b2World(gravity);
 		
 		world->SetContinuousPhysics(true);
 		
@@ -78,7 +74,7 @@ static GamePlayLayer* instanceOfGamePlayLayer;
 		world->SetDebugDraw(m_debugDraw);
 		
 		uint32 flags = 0;
-		flags += b2DebugDraw::e_shapeBit;
+		flags += b2Draw::e_shapeBit;
 //		flags += b2DebugDraw::e_jointBit;
 //		flags += b2DebugDraw::e_aabbBit;
 //		flags += b2DebugDraw::e_pairBit;
