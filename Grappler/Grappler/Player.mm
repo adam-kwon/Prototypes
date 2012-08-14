@@ -39,26 +39,34 @@
     float yDelta = anchor->GetPosition().y - body->GetPosition().y;
     float distance = sqrtf(xDelta*xDelta + yDelta*yDelta);
     
-    b2DistanceJointDef jointDef;
-    jointDef.Initialize(body, anchor, body->GetPosition(), anchor->GetPosition());
+//    b2DistanceJointDef jointDef;
+//    jointDef.Initialize(body, anchor, body->GetPosition(), anchor->GetPosition());
     
 //    jointDef.localAnchorA = b2Vec2(-20/PTM_RATIO, 16/PTM_RATIO);
-    swingJoint = (b2DistanceJoint *)world->CreateJoint(&jointDef);
+//    swingJoint = (b2DistanceJoint *)world->CreateJoint(&jointDef);
     
-    CCLOG(@"  calc distance=%f, joint dist=%f\n", distance, swingJoint->GetLength());
+    b2RopeJointDef ropeJointDef;
+    ropeJointDef.bodyA = anchor;
+    ropeJointDef.bodyB = body;
+    ropeJointDef.maxLength = distance;
+    ropeJointDef.collideConnected = NO;
+    swingJoint = (b2RopeJoint *)world->CreateJoint(&ropeJointDef);
+
     
-    if (swingJoint->GetLength() > maxRopeLength) {
-        ropeLengthDelta = swingJoint->GetLength() - maxRopeLength;
-    } else {
-        ropeLengthDelta = 0;
-    }
+//    CCLOG(@"  calc distance=%f, joint dist=%f\n", distance, swingJoint->GetLength());
+//    
+//    if (swingJoint->GetLength() > maxRopeLength) {
+//        ropeLengthDelta = swingJoint->GetLength() - maxRopeLength;
+//    } else {
+//        ropeLengthDelta = 0;
+//    }
     
     float xForce = 15.f;
     float yForce = 0.f;
     if (body->GetPosition().x > anchor->GetPosition().x) {
         xForce *= -1;
     }
-    body->ApplyLinearImpulse(b2Vec2(xForce, yForce), body->GetPosition());
+    body->ApplyLinearImpulse(b2Vec2(xForce, yForce), body->GetPosition(), true);
     
     currentAnchor = anchor;
 }
@@ -71,9 +79,9 @@
 }
 
 - (void) shortenRope:(float)dt {
-    float newLength = swingJoint->GetLength() - 5*dt;
+    float newLength = swingJoint->GetMaxLength() - 5*dt;
     if (newLength >= MIN_ROPE_LENGTH) {
-        swingJoint->SetLength(newLength);
+        swingJoint->SetMaxLength(newLength);
         
         float xForce = 10*dt;
         float yForce = 10*dt;
@@ -86,7 +94,7 @@
             yForce *= -1;
         }
         
-        body->ApplyLinearImpulse(b2Vec2(xForce, yForce), body->GetWorldCenter());
+        body->ApplyLinearImpulse(b2Vec2(xForce, yForce), body->GetWorldCenter(), true);
         
         
         //XXX figure out a smarter way to do this, but for now just amplify the
