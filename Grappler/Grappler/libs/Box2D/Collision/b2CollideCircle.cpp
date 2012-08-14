@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2007-2009 Erin Catto http://www.gphysics.com
+* Copyright (c) 2007-2009 Erin Catto http://www.box2d.org
 *
 * This software is provided 'as-is', without any express or implied
 * warranty.  In no event will the authors be held liable for any damages
@@ -63,7 +63,7 @@ void b2CollidePolygonAndCircle(
 	int32 normalIndex = 0;
 	float32 separation = -b2_maxFloat;
 	float32 radius = polygonA->m_radius + circleB->m_radius;
-	int32 vertexCount = polygonA->m_vertexCount;
+	int32 vertexCount = polygonA->m_count;
 	const b2Vec2* vertices = polygonA->m_vertices;
 	const b2Vec2* normals = polygonA->m_normals;
 
